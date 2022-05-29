@@ -190,7 +190,7 @@ def default_detection_configs():
 
   # dataset specific parameters
   # TODO(tanmingxing): update this to be 91 for COCO, and 21 for pascal.
-  h.num_classes = 90  # 1+ actual classes, 0 is reserved for background.
+  h.num_classes = 10  # 1+ actual classes, 0 is reserved for background.
   h.seg_num_classes = 3  # segmentation classes
   h.heads = ['object_detection']  # 'object_detection', 'segmentation'
 
@@ -210,9 +210,9 @@ def default_detection_configs():
   h.is_training_bn = True
   # optimization
   h.momentum = 0.9
-  h.optimizer = 'sgd'  # can be 'adam' or 'sgd'.
-  h.learning_rate = 0.08  # 0.008 for adam.
-  h.lr_warmup_init = 0.008  # 0.0008 for adam.
+  h.optimizer = 'adam'  # can be 'adam' or 'sgd'.
+  h.learning_rate = 0.008  # 0.008 for adam.
+  h.lr_warmup_init = 0.0008  # 0.0008 for adam.
   h.lr_warmup_epoch = 1.0
   h.first_lr_drop_epoch = 200.0
   h.second_lr_drop_epoch = 250.0
