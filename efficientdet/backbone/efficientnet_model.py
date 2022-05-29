@@ -184,7 +184,7 @@ class SE(tf.keras.layers.Layer):
   def call(self, inputs):
     h_axis, w_axis = [2, 3] if self._data_format == 'channels_first' else [1, 2]
     if self._local_pooling:
-      se_tensor = tf.nn.avg_pool(
+      se_tensor = tf.nn.max_pool(
           inputs,
           ksize=[1, inputs.shape[h_axis], inputs.shape[w_axis], 1],
           strides=[1, 1, 1, 1],
@@ -552,7 +552,7 @@ class Head(tf.keras.layers.Layer):
         epsilon=global_params.batch_norm_epsilon)
     self._relu_fn = global_params.relu_fn or tf.nn.swish
 
-    self._avg_pooling = tf.keras.layers.GlobalAveragePooling2D(
+    self._avg_pooling = tf.keras.layers.GlobalMaxPooling2D(
         data_format=global_params.data_format)
     if global_params.num_classes:
       self._fc = tf.keras.layers.Dense(
